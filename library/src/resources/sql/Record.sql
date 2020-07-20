@@ -1,0 +1,11 @@
+-- auto Generated on 2020-07-20
+-- DROP TABLE IF EXISTS record;
+CREATE TABLE record(
+	id INT (11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+	`uid` INT (11) NOT NULL DEFAULT -1 COMMENT 'uid',
+	bid INT (11) NOT NULL DEFAULT -1 COMMENT 'bid',
+	lend_time VARCHAR (50) NOT NULL DEFAULT '' COMMENT 'lendTime',
+	return_time VARCHAR (50) NOT NULL DEFAULT '' COMMENT 'returnTime',
+	`name` VARCHAR (50) NOT NULL DEFAULT '' COMMENT 'name',
+	PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT 'record';

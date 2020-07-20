@@ -80,7 +80,7 @@ public class RecordDaoImpl {
     }
 
     public Object[][] getRecordsByUid(int uid) {
-        String sql = "select Record.* , name  from Record, Book " +
+        String sql = "select Record.* , Book.name  from Record, Book " +
         		"where Record.bid=Book.id and uid="+uid;
         Connection conn = BaseDaoImpl.getConn();
         ResultSet rs = null;

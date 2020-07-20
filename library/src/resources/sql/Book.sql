@@ -1,0 +1,13 @@
+-- auto Generated on 2020-07-20
+-- DROP TABLE IF EXISTS book;
+CREATE TABLE book(
+	id INT (11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+	`name` VARCHAR (50) NOT NULL DEFAULT '' COMMENT '书名，不能重复',
+	`count` INT (11) NOT NULL DEFAULT -1 COMMENT '总共数量',
+	`type` VARCHAR (50) NOT NULL DEFAULT '' COMMENT 'type',
+	author VARCHAR (50) NOT NULL DEFAULT '' COMMENT 'author',
+	discount INT (11) NOT NULL DEFAULT -1 COMMENT '总被借次数',
+	has_lended INT (11) NOT NULL DEFAULT -1 COMMENT '已借出本数',
+	address VARCHAR (50) NOT NULL DEFAULT '' COMMENT '藏书地址',
+	PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT 'book';

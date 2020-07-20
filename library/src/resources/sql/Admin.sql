@@ -1,0 +1,7 @@
+-- auto Generated on 2020-07-20
+-- DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin`(
+	id INT (11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+	`password` VARCHAR (50) NOT NULL DEFAULT '' COMMENT 'password',
+	PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT 'admin';

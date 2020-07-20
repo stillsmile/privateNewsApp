@@ -53,18 +53,18 @@ public class Register implements ActionListener {
 
         id.setBounds(325, 140, 95, 30);
         id.setFont(font1);
-        id.setForeground(Color.red);
+        id.setForeground(Color.black);
 
         name.setBounds(325, 190, 95, 30);
         name.setFont(font1);
         name.setForeground(Color.black);
 
         pass.setBounds(325, 240, 95, 30);// 密码的位置大小
-        pass.setForeground(Color.red);
+        pass.setForeground(Color.black);
         pass.setFont(font1);
 
         pass2.setBounds(325, 290, 95, 30);
-        pass2.setForeground(Color.red);
+        pass2.setForeground(Color.black);
         pass2.setFont(font1);
 
         textId.setBounds(430, 143, 170, 25);
