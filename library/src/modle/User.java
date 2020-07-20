@@ -1,10 +1,10 @@
 package modle;
 
 public class User {
-	private int id;
+	private Integer id;
 	private String name;
 	private String password;
-	private int point;
+	private Integer point;
 	
 	public User() {}
 	public User(int id, String name, String password, int point) {

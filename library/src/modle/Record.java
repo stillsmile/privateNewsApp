@@ -1,9 +1,9 @@
 package modle;
 
 public class Record {
-	private int id;
-	private int uid;
-	private int bid;
+	private Integer id;
+	private Integer uid;
+	private Integer bid;
 	private String lendTime;
 	private String returnTime;
 	

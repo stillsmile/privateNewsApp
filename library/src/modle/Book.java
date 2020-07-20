@@ -1,14 +1,14 @@
 package modle;
 
 public class Book {
-	private int id;
+	private Integer id;
 	private String name;  // 书名，不能重复
-	private int count; // 总共数量
+	private Integer count; // 总共数量
 	private String type;
 	private String author;
-	private int discount; // 总被借次数
+	private Integer discount; // 总被借次数
 	
-	private int hasLended; // 已借出本数
+	private Integer hasLended; // 已借出本数
 	private String address; // 藏书地址
 	
 	public Book(){}

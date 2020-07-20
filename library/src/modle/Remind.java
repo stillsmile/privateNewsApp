@@ -1,9 +1,9 @@
 package modle;
 
 public class Remind {
-	private int id;
-	private int uid;
-	private int bid;
+	private Integer id;
+	private Integer uid;
+	private Integer bid;
 	
 	public Remind() {}
 	public Remind(int id, int uid, int bid) {

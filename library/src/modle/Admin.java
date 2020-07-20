@@ -2,7 +2,7 @@ package modle;
 
 public class Admin {
 
-    private int id;
+    private Integer id;
     private String password;
 
     public Admin() {
