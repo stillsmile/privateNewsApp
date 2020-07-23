@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<!-- 	
+		//其中项目url用http://localhost:8080/ssh/list.jsp
+		并不是因为springxml用ssh
+		而是因为spring_hibernate_struts2  项目的 preference 的 web 设置中
+		把spring_hibernate_struts2  改成了 ssh
+ 	-->
+
+	<!-- 配置数据源 -->
+	<bean id="mydataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl"
+			value="jdbc:mysql://139.196.109.29:3306/mysql?useUnicode=true&amp;characterEncoding=utf8" />
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="user" value="root" />
+		<property name="password" value="123456" />
+		<property name="initialPoolSize" value="2" />
+	</bean>
+
+	<!-- 注入sessionFactory -->
+	<bean id="mysessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="mydataSource" />
+		<!-- 配置mapping -->
+		<property name="mappingResources">
+			<list>
+				<value>com/etc/entity/Dept.hbm.xml</value>
+			</list>
+		</property>
+		<!-- 配置其他属性 ，比如断言 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 配置DAO对象 -->
+	<bean id="deptDao" class="com.etc.dao.HibernateDeptDao">
+		<property name="sessionFactory" ref="mysessionFactory" />
+	</bean>
+
+	<!-- 创建Action对象 -->
+	<bean id="addAction" class="com.etc.action.AddAction">
+		<property name="deptDao" ref="deptDao" />
+	</bean>
+</beans>

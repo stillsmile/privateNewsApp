@@ -1,0 +1,144 @@
+﻿1.Spring框架作用，好处
+ 作用是整合，好处是解耦
+在ssh整合中主要使用Spring的IoC和AOP特性。
+
+2.IoC概念
+  反向控制，控制反转
+  控制权指的是组件对象的创建，销毁，调用关系的维护。
+  反向控制指的是两个组件在作用时，组件对象的创建、销毁、调用关系维护等工作由IoC框架负责。
+Spring框架的IoC使用的DI(依赖注入)技术实现，可以用
+setter方式注入或构造器注入。
+
+3.AOP概念
+ 面向切面编程，面向方面编程
+ 面向对象编程，关注点是对象，如何更好更合理的封装一个对象。
+ 面向切面编程，关注点是切面，如何将共通处理部分进行灵活地，重复利用。将切面组件和目标对象解耦。
+ 面向切面编程是以面向对象编程为基础，主要改善组件间一对多的使用结构。
+
+4.AOP注解方式的使用
+
+a.组件自动扫描注解
+  @Controller 控制组件
+  @Service 业务组件
+  @Repository 数据访问组件DAO
+  @Component 其他组件
+b.自动注入注解
+  @Resource
+  注意a和b注解使用前提是，在xml中添加下面声明
+  <context:component-scan 
+        base-package="com.etc"/>
+c.AOP注解
+  @Aspect：将当前组件指定为切面组件
+  @Pointcut:定义一个切入点表达式
+  @Around:环绕通知
+  @Before:前置通知
+  @AfterReturnning:后置通知
+  @AfterThrowing:异常通知
+  @After:最终通知
+  注意c注解使用前提，在xml中添加下面的声明
+  <aop:aspectj-autoproxy/>
+
+5.Spring对数据库访问技术的支持
+ （1）提供了一套相应的工具类
+     a.整合JDBC技术
+	JdbcDaoSupport,JdbcTemplate
+     b.整合Hibernate技术
+        HibernateDaoSupport,HibernateTemplate
+ （2）提供一致异常处理.将各种技术的异常统一封装。将各种异常在底层统一处理try-catch处理
+     DataAccessException
+ （3）提供了基于AOP方式的事务管理
+     a.编程式事务管理方式
+     b.声明式事务管理方式（推荐）
+6.Spring如何整合JDBC技术
+  (1)引入spring开发包
+     dbcp连接池开发包
+     数据库驱动开发包
+commons-collections-3.1.jar
+commons-dbcp-1.2.2.jar
+commons-pool.jar
+mysqldriver.jar
+  (2)添加spring配置文件
+     配置一个datasource <bean>
+  (3)编写entity实体类
+  (4)编写DAO组件
+     定义template,添加setDataSource()方法
+     主要目的是：接收容器注入的datasource
+实例化template工具对象。
+    JdbcTemplate具体使用如下：
+      update:实现增、删、改操作
+      queryForInt:查询结果只有一个值
+      queryForObject:查询结果最多一条
+      query:查询结果集返回多条
+  (5)在spring配置文件中添加DAO配置
+     注意：将datasource注入
+    
+8.Spring如何整合Hibernate技术
+  (1)引入spring开发包
+     dbcp连接池开发包
+     数据库驱动开发包
+     Hibernate框架开发包
+commons-collections-3.1.jar
+commons-dbcp-1.2.2.jar
+commons-pool.jar
+mysqldriver.jar
+
+  (2)添加spring配置文件
+     配置一个datasource <bean>
+     配置一个sessionfactory
+  (3)编写entity实体类和hbm.xml映射描述文件
+  (4)编写DAO组件
+     定义template,添加setSessionFactory()方法
+     主要目的是：接收容器注入的sessionFactory
+实例化template工具对象。
+    HibernateTemplate具体使用如下：
+      update:实现更新操作
+      save:实现添加操作
+      delete:实现删除操作
+      find:查询结果
+  (5)在spring配置文件中添加DAO配置
+     注意：将sessionFactory注入
+
+9.Spring整合Hibernate后，遇到特殊情况，需要使用Hibernate中的Session，怎么办？
+  （1）以回调函数的方式使用，自动关闭session
+  （2）以HibernateDaoSupport中的getSession()方法使用，需要显示关闭session
+  
+10.Spring与Struts2框架的整合
+   引入struts2的5个基本开发包。
+  (1)整合方案一
+   特点：将Action对象交给Spring容器管理
+   知Struts2框架，Action创建工作交给整合插件提供的StrutsSpringObjectFactory负责
+    b.修改struts.xml中<action>元素的class属性
+      class="包名.类名"改为
+      class="Spring容器中的id属性"
+    c.将Action组件在spring容器中定义
+    d.在web.xml中个添加ContextLoaderListener配置，用于服务器启动时，实例Spring容器
+
+  (2)整合方案二
+     特点：将Action对象交给StrutsSpringObjectFactory负责创建，
+     并将Spring容器中与Actio a.引入struts2和spring整合插件包
+      struts2-spring-plugin-2.2.1.jar
+    通n属性匹配的Bean对象注入。
+     默认采取名称匹配规则，可以在struts.xml中修改匹配规则
+   a.引入struts2和spring整合插件包
+   b.d.在web.xml中个添加ContextLoaderListener配置，用于服务器启动时，实例Spring容器
+=========练习================
+利用Struts+Spring+JDBC或者Struts+Spring+Hibernate
+实现对部门表的增删改查操作
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+   

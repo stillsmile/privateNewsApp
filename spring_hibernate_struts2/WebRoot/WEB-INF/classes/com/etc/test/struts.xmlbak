@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<package name="ssh" extends="struts-default">
+		<!-- class就决定action对象有谁来创建的问题 -->
+		<action name="add" class="com.etc.action.AddAction" method="execute">
+			<result name="success" type="redirectAction">list</result>
+		</action>
+
+		<action name="list" class="com.etc.action.ListAction" method="execute">
+			<result name="success">/list.jsp</result>
+		</action>
+		<action name="login" class="com.etc.action.ListAction" method="execute">
+			<result name="success">/view/login.jsp</result>
+		</action>
+
+	</package>
+
+</struts>
