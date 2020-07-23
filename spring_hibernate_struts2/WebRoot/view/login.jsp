@@ -32,28 +32,29 @@ String basePath = request.getScheme() + "://" +request.getServerName() + ":" + r
 <script type="text/javascript">
 	$(function(){
 		//点击图片切换验证码
-		$("#vcodeImg").click(function(){
-			this.src="vcode.action?method=GetVcode&t="+new Date().getTime();
-		});
+		/* $("#vcodeImg").click(function(){
+			this.src="vcode.action";
+		}); */
 		
 		//登录
 		$("#submitBtn").click(function(){
-			if($("#radio-2").attr("checked") && "${systemInfo.forbidStudent}" == 1){
+			/* if($("#radio-2").attr("checked") && "${systemInfo.forbidStudent}" == 1){
 				$.messager.alert("消息提醒", "学生暂不能登录系统！", "warning");
 				return;
 			}
 			if($("#radio-3").attr("checked") && "${systemInfo.forbidTeacher}" == 1){
 				$.messager.alert("消息提醒", "教师暂不能登录系统！", "warning");
 				return;
-			}
-			
+			} */
 			var data = $("#form").serialize();
 			$.ajax({
-				type: "post",
+				type: "get",
 				url: "vcode.action",
-				data: data, 
-				dataType: "text", //返回数据类型
+				//data: data, 
+// 				dataType: "text", //返回数据类型
 				success: function(msg){
+					
+					debugger
 					if("vcodeError" == msg){
 						$.messager.alert("消息提醒", "验证码错误!", "warning");
 						$("#vcodeImg").click();//切换验证码
@@ -91,7 +92,7 @@ String basePath = request.getScheme() + "://" +request.getServerName() + ":" + r
 </div>
 <div class="loginWraper">
   <div id="loginform" class="loginBox">
-    <form id="form" class="form form-horizontal" method="post">
+    <form action="login.action" class="form form-horizontal" method="post">
       <div class="row cl">
         <label class="form-label col-3"><i class="Hui-iconfont">&#xe60d;</i></label>
         <div class="formControls col-8">
@@ -104,11 +105,11 @@ String basePath = request.getScheme() + "://" +request.getServerName() + ":" + r
           <input id="" name="password" type="password" placeholder="密码" class="input-text size-L">
         </div>
       </div>
-      <div class="row cl">
+      <!-- <div class="row cl">
         <div class="formControls col-8 col-offset-3">
           <input class="input-text size-L" name="vcode" type="text" placeholder="请输入验证码" style="width: 200px;">
-          <img title="点击图片切换验证码" id="vcodeImg" src="vcode.action?method=GetVCode"></div>
-      </div>
+          <img title="点击图片切换验证码" id="vcodeImg" src="vcode.action"></div>
+      </div> -->
       
       <div class="mt-20 skin-minimal" style="text-align: center;">
 		<div class="radio-box">
@@ -127,7 +128,7 @@ String basePath = request.getScheme() + "://" +request.getServerName() + ":" + r
       
       <div class="row">
         <div class="formControls col-8 col-offset-3">
-          <input id="submitBtn" type="button" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+          <input id="submitBtn1" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
         </div>
       </div>
     </form>
